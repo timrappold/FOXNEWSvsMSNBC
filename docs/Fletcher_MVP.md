@@ -4,45 +4,46 @@ Author: Tim Rappold
 
 # Project:
 
-Political Polarization in Network News
+Political and Linguistic Polarization in Network News
 
 ## MVP Summary:
 
-The goal of this project is to quantify  
+The goal of this project is to quantify, contextual, and (moonshot) model differences among news shows on two news broadcast networks, Fox News and MSNBC, respectively known for their conservative and liberal political leanings. We'll be looking at two show from each network which are broadcast weeknights in competing time slots:
 
-- **Domain:** The question is, Where will a new guest book their first travel experience? The AirBnB data set I'll work with comes from a Kaggle competition. The idea is to use user data to predict which of 10 countries a new user is likely to pick as their first destination.
+| Time | FOX News           | MSNBC                                |
+| ---- | ------------------ | ------------------------------------ |
+| 9pm  | Hannity            | Rachel Maddow Show                   |
+| 10pm | The Ingraham Angle | The Last Word with Lawrence O'Donnel |
 
-- **Data:** The data are stored in five disparate .csv tables:
+I'll do an exploratory data analysis and attempt a number of analyses and models.
 
-  - Sean Hannity show transcripts for the last three months (at a minimum).
-  - Other Fox News shows' transcript (Laura Ingraham, etc.)
-  - MSNBC (or CNN) show transcripts. E.g. Rachel Madow.
-  - 
-  - .
+**Domain:**  Topic modeling, sentiment analysis, text classification.
 
-  | Table | List of columns |
-  | ----- | --------------- |
-  |       |                 |
-  |       |                 |
-  |       |                 |
-  |       |                 |
+**Data:** We're looking at episode transcripts from the four different shows for the last 6 months or so. Each show was broadcast about 120 times in that time span, so the total corpus will comprise speech transcripts from about 480 hour-long episodes.
 
-  **Modes of analysis**: 
+**Modes of analysis**: 
 
-  * Coupling of terms. E.g. `Trump` + `Stormy Daniels`. `Trump`+`Kysliak`. `Trump`+`Mueller`.
+* Topic Modeling. Explore a variety of topics; e.g:
 
-  **Work Flow / Pipeline**: 
+  * Trump
+  * Mueller
+  * Stormy Daniels
+  * (North) Korea
+  * (GOP) Memo
+  * (Steele) Dossier
+  * Putin
+  * Net Neutrality
 
-  * Define a document. Could be either a paragraph in an episode, the episode itself, or the corpus of a show. Create a `document` class?
-
-  * Create 
-
-     
+* Sentiment analysis
 
   
 
-- **Known unknowns:** 
+**Work Flow / Pipeline**: 
 
-  
+* Define a document. Could be either a paragraph in an episode, the episode itself, or the corpus of a show. Create a `document`/ `Episode` class?
 
-  - There are many ML models to use for this. Most of the ML tools I've seen used for this challenge I've not seen before.
+   
+
+**Known unknowns:** 
+
+- Not sure where this is all going to go!
