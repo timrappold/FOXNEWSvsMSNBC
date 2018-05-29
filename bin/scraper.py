@@ -1,3 +1,8 @@
+
+import sys
+#sys.path.append("../data/")
+
+
 from bs4 import BeautifulSoup
 import requests
 import os
@@ -8,6 +13,7 @@ from selenium import webdriver
 import pickle
 import re
 
+data_path = 'data/'
 
 def get_soup(url):
     """
@@ -131,7 +137,7 @@ def scrape_FOX_transcripts(from_file='fox_news_episode_links.pkl',
 # Scrape MSNBC:
 
 
-def scrape_MSNBC_transcripts(filename='msnbc_transcripts2.pkl'):
+def scrape_MSNBC_transcripts(filename=data_path + 'msnbc_transcripts2.pkl'):
     """
     Scrape transcripts of MSNBC's `Rachel Maddow Show` and `The Last Word with
     Lawrence O'Donnel`. Stores transcripts in a dictionary with the following
@@ -200,14 +206,14 @@ def main(scrape_fresh=False):
     :param scrape_fresh: bool.
     :return: list of dictionaries.
     """
-    fox_filename = 'fox_news_transcripts3.pkl'
-    msnbc_filename = 'msnbc_transcripts2.pkl'
+    fox_filename = data_path + 'fox_news_transcripts3.pkl'
+    msnbc_filename = data_path + 'msnbc_transcripts2.pkl'
 
     if scrape_fresh:
 
-        scrape_FOX_transcript_urls(filename='fox_news_episode_links.pkl')
+        scrape_FOX_transcript_urls(filename=data_path + 'fox_news_episode_links.pkl')
 
-        scrape_FOX_transcripts(from_file='fox_news_episode_links.pkl',
+        scrape_FOX_transcripts(from_file=data_path + 'fox_news_episode_links.pkl',
                                to_file=fox_filename)
 
         scrape_MSNBC_transcripts(filename=msnbc_filename)
@@ -221,7 +227,6 @@ def main(scrape_fresh=False):
     transcripts = msnbc_transcripts + fox_transcripts
 
     return transcripts
-
 
 
 if __name__ == '__main__':
