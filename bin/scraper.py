@@ -1,6 +1,6 @@
-
-import sys
-#sys.path.append("../data/")
+"""
+Scraper that gets show transcripts from msnbc.com and foxnews.com.
+"""
 
 
 from bs4 import BeautifulSoup
@@ -11,9 +11,9 @@ import time
 import numpy as np
 from selenium import webdriver
 import pickle
-import re
 
 data_path = 'data/'
+
 
 def get_soup(url):
     """
