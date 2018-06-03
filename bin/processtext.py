@@ -53,7 +53,7 @@ def get_transcripts_without_duplicates(transcripts):
     for transcript in clean_transcripts:
         hist[transcript['show']] = hist.get(transcript['show'], 0) + 1
 
-    # Print the number of transcriptst for each show:
+    # Print the number of transcripts for each show:
     print(hist)
     return clean_transcripts
 

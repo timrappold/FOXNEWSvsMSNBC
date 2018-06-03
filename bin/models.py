@@ -50,7 +50,8 @@ def get_documents(transcripts):
 
     return {'MSNBC': msnbc_documents,
             'FOX': fox_documents,
-            'combined': documents}
+            'combined': documents,
+            }, doc2network
 
 
 def get_models_dict(documents_dict):
@@ -122,10 +123,11 @@ def get_models_dict(documents_dict):
 def main():
 
     transcripts = processtext.main()
-    documents_dict = get_documents(transcripts)
+    documents_dict, doc2network = get_documents(transcripts)
     models_dict = get_models_dict(documents_dict)
 
-    return models_dict
+    return models_dict, doc2network
+
 
 if __name__ == "__main__":
 
