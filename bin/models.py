@@ -1,4 +1,5 @@
 from collections import defaultdict
+import pickle
 
 from nltk.stem import WordNetLemmatizer
 
@@ -12,6 +13,15 @@ import processtext
 import logging
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
                     level=logging.INFO)
+
+def dump_pickle(data, filename):
+    with open(filename, 'wb') as picklefile:
+        pickle.dump(data, picklefile)
+
+def load_pickle(file_pkl):
+    with open(file_pkl, 'rb') as picklefile:
+        return pickle.load(picklefile)
+
 
 
 def get_documents(transcripts):
@@ -44,9 +54,11 @@ def get_documents(transcripts):
         else:
             print('NO Network assignment.')
 
-    print(f"Number of episosdes, combined = {len(documents)}")
+    print(f"Number of episodes, combined = {len(documents)}")
     print(f"Number of FOX episodes = {len(fox_documents)}")
     print(f"Number of MSNBC episodes = {len(msnbc_documents)}")
+
+    dump_pickle(doc2network, 'pickles/doc2network.pkl')
 
     return {'MSNBC': msnbc_documents,
             'FOX': fox_documents,
@@ -117,14 +129,21 @@ def get_models_dict(documents_dict):
                             'index': index,
                             }
 
+    dump_pickle(models_dict, 'pickles/models_dict.pkl')
+
     return models_dict
 
 
-def main():
+def main(from_pickle=True):
 
-    transcripts = processtext.main()
-    documents_dict, doc2network = get_documents(transcripts)
-    models_dict = get_models_dict(documents_dict)
+    if from_pickle:
+        models_dict = load_pickle('pickles/models_dict.pkl')
+        doc2network = load_pickle('pickles/doc2network.pkl')
+
+    else:
+        transcripts = processtext.main()
+        documents_dict, doc2network = get_documents(transcripts)
+        models_dict = get_models_dict(documents_dict)
 
     return models_dict, doc2network
 
